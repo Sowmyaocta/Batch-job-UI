@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+.root-wrapper{
+    height: 100%;
+}
+.header-wrap{
+  box-shadow: 8px -4px 11px 0px #8d8b8b;
+  z-index: 1;
+}
+.full-wrap{
+  flex-grow: 1;
+}
+.sidebar-wrap{
+  flex:0.3;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn-info{
+  background-color: #0dcaf075;
+}
+.btn-danger{
+  background-color: #dc3545bd;
+}
+.mandatoryAstrix{
+  color: red;
+}
+.custom-spinner circle{
+  stroke: #0d6efd;
+}
+.spinner-wrap{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.80;
+  /*background-color: black;*/
+  z-index: 9999;
+}
+.custom-spinner{
+  z-index: 99999;
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+.cal-month-view .bg-green,
+.cal-week-view .cal-day-columns .bg-green,
+.cal-day-view .bg-green {
+  background-color: rgb(158, 243, 158) !important;
+}
+/* .cal-month-view .bg-green::before{
+    content: '\f03a';
+    font: var(--fa-font-solid);
+} */
+
+.cal-day-selected,
+.cal-day-selected:hover {
+  background-color: rgb(253, 244, 224) !important;
+}
+.cal-month-view .cal-day-cell.cal-today {
+  background-color: #ffffff;
+}
+.stepper-hr {
+  margin-top: 0;
+}
+.btn-nxt {
+  margin-bottom: 1rem;
+  float: right;
+}
+.btn-prev {
+  margin-bottom: 1rem;
+  float: left;
+}
+.mandatoryAstrix {
+  color: red;
+}
+.terms {
+  color: #007abc;
+}
+.subtitleDetails {
+  font-weight: bold;
+}
+.activeStep{
+  color:#007abc;
+}
+.srvCmp-modal{
+  min-width:43%;
+}

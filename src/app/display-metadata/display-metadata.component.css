@@ -1,0 +1,11 @@
+.create-btn{
+    padding: 10px;
+    margin: 0px 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.create-section{
+    transition: height 2s ease 0s;
+    margin:10px 10px;
+}

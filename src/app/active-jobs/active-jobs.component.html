@@ -1,0 +1,123 @@
+<div class="spinner-wrap" *ngIf="loading">
+    <mat-spinner class="custom-spinner" diameter="60"></mat-spinner>
+</div>
+
+<h3 style="font-weight: 500;">
+  Active Jobs
+</h3>
+
+<div class="row gy-2 gx-3 mb-3 align-items-center justify-content-end">
+  <!-- <div class="col-auto custom-col-auto" style="text-align: center">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      (click)="addNewProvider('new')"
+    >
+      <fa-icon [icon]="faPlus"></fa-icon> Add New
+    </button>
+  </div> -->
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" style="width: 100%" matSort>
+    <!-- Position Column -->
+    <!-- <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header [hidden]="show">Id</th>
+      <td mat-cell *matCellDef="let element" [hidden]="show">{{ element.id }}</td>
+    </ng-container> -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="jobDefinitionName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Definition Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.jobDefinitionName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="timeout">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Timeout</th>
+        <td mat-cell *matCellDef="let element">{{ element.timeout }}</td>
+      </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button [matMenuTriggerFor]="menu" style="background: none;border: none;"><fa-icon [icon]="faEllipsisVertical"></fa-icon></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="viewRuns(element,'viewRuns')">View Runs</button>
+				<button mat-menu-item (click)="viewMetadata(element,'viewMetadata')">Display Metadata</button>
+				<button mat-menu-item (click)="runJob(element,'runJob')">Run Job</button>
+            </mat-menu>
+        <!-- <div ngbDropdown class="d-inline-block">
+			<button type="button" class="btn" >
+                <fa-icon [icon]="faEllipsisVertical"></fa-icon>
+			</button>
+			<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+				<button ngbDropdownItem (click)="viewRuns(element)">View Runs</button>
+				<button ngbDropdownItem (click)="viewMetadata(element)">View Metadata</button>
+				<button ngbDropdownItem (click)="runJob(element)">Run Job</button>
+			</div>
+		</div> -->
+
+        <!-- <div class="dropdown">
+            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><span class="dropdown-item" (click)="viewRuns(element)">View Runs</span></li>
+              <li><span class="dropdown-item" (click)="viewMetadata(element)">View Metadata</span></li>
+              <li><span class="dropdown-item" (click)="runJob(element)">Run Job</span></li>
+            </ul>
+          </div> -->
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  </mat-paginator>
+</div>
+
+<ng-template #mdlcontent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ mdlTitle }}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+<div cdlass="modal-body">
+  <app-view-jobs [runData]="runData" *ngIf="modalMode == 'viewJobs'"></app-view-jobs>
+  <app-display-metadata [displayMetadata]="displayMetadata" *ngIf="modalMode == 'displayMetadata'"></app-display-metadata>
+</div>
+</ng-template>
+
+<ng-template #mdlAlert let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ mdlTitle }}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <!-- Do you want to delete the Provider : {{ mdlUpdate.providerName }} ? -->
+   
+  </div>
+  <div class="modal-footer">
+<!--     <button type="button" class="btn btn-outline-dark" >
+      Delete
+    </button> -->
+  </div>
+</ng-template>
+
+<app-toasts-container aria-live="polite" aria-atomic="true" style="z-index: 999999;"></app-toasts-container>
